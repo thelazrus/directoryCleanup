@@ -5,8 +5,12 @@ class Program
 {
     static void Main(string[] args)
     {
-        string path = @"C:\Users\sharr\Videos\movies";
-        DeleteFoldersLessThan100MB(path);
+        Console.WriteLine("Please enter the path to the folder you want to cleanup: ");
+        string path = Console.ReadLine();
+        string fpath = $@"{path}";
+        DeleteFoldersLessThan100MB(fpath);
+        Console.WriteLine($"The {path} directory has been cleaned!");
+        Console.ReadKey();
     }
 
     static void DeleteFoldersLessThan100MB(string path)
@@ -18,6 +22,7 @@ class Program
                 long size = GetDirectorySize(directory);
                 if (size < 100 * 1024 * 1024)
                 {
+                    Console.WriteLine($"Removing Directory: {directory} ");
                     Directory.Delete(directory, true);
                 }
                 else
